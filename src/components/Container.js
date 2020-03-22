@@ -30,11 +30,21 @@ const Container = () => {
   const [inputValue, setInputValue] = useState('');
 
   const saveLink = async () => {
-    const { websites = [] } = await browser.storage.local.get({ website: [] });
-    if (websites.length) {
+    // const { websites } = await browser.storage.local.get({ website: [] });
+    const { websites } = await browser.storage.local.get('websites');
+    // chrome.storage.local.get('keywords', function(result){
+    //   var keywords = result.keywords;
+    //   alert(keywords);
+    // });
+    if (!inputValue.length || (websites && websites.length)) {
       if (websites.includes(inputValue)) return null;
     }
+    console.log('websites before');
+    console.log(websites);
     websites.push(inputValue);
+
+    console.log('websites after push');
+    console.log(websites);
     browser.storage.local.set({ websites });
   };
 

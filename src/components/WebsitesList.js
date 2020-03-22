@@ -11,9 +11,7 @@ const WebsitesList = () => {
   const [sitesList, setSitesList] = useState([]);
 
   useEffect(async () => {
-    console.log('inside of useEffect');
-    const { websites } = await browser.storage.local.get({ websites: [] });
-    console.log(websites);
+    const { websites } = await browser.storage.local.get('websites');
     setSitesList(websites);
   }, []);
 
