@@ -3,14 +3,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 import Box from 'components/Box';
-import defaultTheme from 'themes/default';
+import theme from 'themes/default';
 import Container from './components/Container';
+import { H3 } from './components/Common';
 
 const Popup = () => {
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Box width="350px" height="450px" padding={16}>
-        <h3>Websites block list</h3>
+        <H3>Good Block</H3>
         <Container />
       </Box>
     </ThemeProvider>

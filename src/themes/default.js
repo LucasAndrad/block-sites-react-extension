@@ -1,9 +1,7 @@
 import config from './config';
+import colors from './colors';
 
 export default {
   ...config,
-  palette: {
-    primary: '#488eff',
-    secondary: '#FFFFFF',
-  },
+  colors,
 };
