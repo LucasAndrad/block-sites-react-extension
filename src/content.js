@@ -18,19 +18,18 @@ shadow.appendChild(appContainer);
 document.body.appendChild(root);
 
 const App = () => {
-  return (
-    <StyleSheetManager target={styleContainer}>
-      <ThemeProvider theme={defaultTheme}>
-        <Box
-          position="fixed"
-          bottom={3}
-          right={3}
-        >
-          <Example />
-        </Box>
-      </ThemeProvider>
-    </StyleSheetManager>
-  );
+  // Use this file to display something on screen
+  return null;
+
+  // return (
+  //   <StyleSheetManager target={styleContainer}>
+  //     <ThemeProvider theme={defaultTheme}>
+  //       <Box position="fixed" bottom={3} right={3}>
+  //         <Example />
+  //       </Box>
+  //     </ThemeProvider>
+  //   </StyleSheetManager>
+  // );
 };
 
 ReactDOM.render(<App />, appContainer);
