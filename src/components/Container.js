@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import browser from 'webextension-polyfill';
+import { Button } from './Common';
 
 const Form = styled.div`
   width: 100%;
-  border-top: 1px solid #d6d6d6;
+  border-top: 1px solid ${props => props.theme.colors.border};
 `;
 
 const Input = styled.input`
@@ -12,7 +13,7 @@ const Input = styled.input`
   padding: 10px;
   width: 100%;
   max-width: calc(100% - 18px);
-  border: 1px solid #d6d6d6;
+  border: 1px solid ${props => props.theme.colors.border};
   border-radius: 5px;
   box-shadow: none;
   font-size: 0.9rem;
@@ -21,8 +22,6 @@ const Input = styled.input`
     outline: none;
   }
 `;
-
-const Button = styled.button``;
 
 // chrome extensions docs
 // https://developer.chrome.com/apps/storage#property-local
@@ -43,7 +42,9 @@ const Container = () => {
   return (
     <Form>
       <Input value={inputValue} onChange={e => handleInputChange(e)} />
-      <Button onClick={() => saveLink()}>Save</Button>
+      <Button onClick={() => saveLink()} mt={16}>
+        Save
+      </Button>
     </Form>
   );
 };
