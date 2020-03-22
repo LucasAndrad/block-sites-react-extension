@@ -11,8 +11,11 @@ const Input = styled.input`
   margin-top: 20px;
   padding: 10px;
   width: 100%;
-  border: 1px solid black;
+  max-width: calc(100% - 18px);
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
   box-shadow: none;
+  font-size: 0.9rem;
   &:focus {
     -webkit-appearance: none;
     outline: none;
