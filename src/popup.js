@@ -5,12 +5,14 @@ import { ThemeProvider } from 'styled-components';
 import Box from 'components/Box';
 import Example from 'components/Example';
 import defaultTheme from 'themes/default';
+import Container from './components/Container';
 
 const Popup = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box width="200px" padding={3}>
-        <Example />
+      <Box width="350px" height="450px" padding={3}>
+        <h3>Websites block list</h3>
+        <Container />
       </Box>
     </ThemeProvider>
   );
