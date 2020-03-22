@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import browser from 'webextension-polyfill';
 import { Button } from './Common';
+import WebsitesList from './WebsitesList';
 
 const Form = styled.div`
   width: 100%;
@@ -29,9 +30,12 @@ const Container = () => {
   const [inputValue, setInputValue] = useState('');
 
   const saveLink = async () => {
-    const { websites } = await browser.storage.local.get({ website: [] });
-    const newWebsites = [...websites, inputValue];
-    browser.storage.local.set({ websites: newWebsites });
+    const { websites = [] } = await browser.storage.local.get({ website: [] });
+    if (websites.length) {
+      if (websites.includes(inputValue)) return null;
+    }
+    websites.push(inputValue);
+    browser.storage.local.set({ websites });
   };
 
   const handleInputChange = event => {
@@ -45,6 +49,7 @@ const Container = () => {
       <Button onClick={() => saveLink()} mt={16}>
         Save
       </Button>
+      <WebsitesList />
     </Form>
   );
 };
