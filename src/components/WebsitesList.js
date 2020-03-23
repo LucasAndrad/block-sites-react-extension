@@ -68,7 +68,7 @@ const WebsitesList = () => {
   });
 
   const removeLink = link => {
-    const newList = sitesList.filter(site => {
+    const newList = sitesList.reverse().filter(site => {
       return site !== link;
     });
 
