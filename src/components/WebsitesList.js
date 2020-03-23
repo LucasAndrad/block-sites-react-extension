@@ -40,7 +40,7 @@ const WebsitesList = () => {
   useEffect(async () => {
     if (!sitesList.length) {
       const { websites } = await browser.storage.local.get('websites');
-      setSitesList(websites);
+      setSitesList(websites.reverse());
     }
   }, []);
 
@@ -48,7 +48,7 @@ const WebsitesList = () => {
     browser.storage.onChanged.addListener(changes => {
       const { newValue, oldValue } = changes.websites;
       if (newValue.lenght !== oldValue.length) {
-        setSitesList(changes.websites.newValue);
+        setSitesList(changes.websites.newValue.reverse());
       }
     });
   }, []);

@@ -36,6 +36,7 @@ const Container = () => {
     }
     websites.push(inputValue);
     browser.storage.local.set({ websites });
+    setInputValue('');
   };
 
   const handleInputChange = event => {
