@@ -36,6 +36,14 @@ const IconButton = styled.div`
 
 const WebsitesList = () => {
   const [sitesList, setSitesList] = useState([]);
+  const [startListener, setStartListener] = useState(false);
+
+  const websitesListener = changes => {
+    const { newValue, oldValue } = changes.websites;
+    if (newValue.lenght !== oldValue.length) {
+      setSitesList(changes.websites.newValue.reverse());
+    }
+  };
 
   useEffect(async () => {
     if (!sitesList.length) {
@@ -45,13 +53,19 @@ const WebsitesList = () => {
   }, []);
 
   useEffect(() => {
-    browser.storage.onChanged.addListener(changes => {
-      const { newValue, oldValue } = changes.websites;
-      if (newValue.lenght !== oldValue.length) {
-        setSitesList(changes.websites.newValue.reverse());
-      }
-    });
+    if (!startListener) {
+      browser.storage.onChanged.addListener(websitesListener);
+      setStartListener(true);
+    }
   }, []);
+
+  useEffect(() => {
+    return function removeListener() {
+      if (startListener) {
+        browser.storage.onChanged.removeListener(websitesListener);
+      }
+    };
+  });
 
   const removeLink = link => {
     const newList = sitesList.filter(site => {
