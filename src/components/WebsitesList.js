@@ -38,8 +38,19 @@ const WebsitesList = () => {
   const [sitesList, setSitesList] = useState([]);
 
   useEffect(async () => {
-    const { websites } = await browser.storage.local.get('websites');
-    setSitesList(websites);
+    if (!sitesList.length) {
+      const { websites } = await browser.storage.local.get('websites');
+      setSitesList(websites);
+    }
+  }, []);
+
+  useEffect(() => {
+    browser.storage.onChanged.addListener(changes => {
+      const { newValue, oldValue } = changes.websites;
+      if (newValue.lenght !== oldValue.length) {
+        setSitesList(changes.websites.newValue);
+      }
+    });
   }, []);
 
   const removeLink = link => {
@@ -54,7 +65,7 @@ const WebsitesList = () => {
 
   return (
     <ListContainer>
-      {sitesList.reverse().map(site => (
+      {sitesList.map(site => (
         <LinkContainer>
           <LinkText>{site}</LinkText>
           <IconButton onClick={() => removeLink(site)}>
