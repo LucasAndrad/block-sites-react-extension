@@ -4,4 +4,5 @@ export default {
   darkGreen: '#116530',
   text: '#3e3e3e',
   border: '#d6d6d6',
+  lightRed: '#ffabaf',
 };
