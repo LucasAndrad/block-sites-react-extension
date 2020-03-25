@@ -30,7 +30,7 @@ const Container = () => {
   const [inputValue, setInputValue] = useState('');
 
   const saveLink = async () => {
-    const { websites } = await browser.storage.local.get('websites');
+    const { websites = [] } = await browser.storage.local.get('websites');
     if (!inputValue.length || (websites && websites.length)) {
       if (websites.includes(inputValue)) return null;
     }
