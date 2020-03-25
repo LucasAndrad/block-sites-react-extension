@@ -4,7 +4,14 @@ import styled from 'styled-components';
 import browser from 'webextension-polyfill';
 
 const Container = styled.div`
+  position: absolute;
   background: red;
+  margin: 0 auto;
+  top: 100px;
+  width: 400px;
+  z-index: 10000;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const Modal = () => {
@@ -39,6 +46,8 @@ const Modal = () => {
       }
     };
   });
+
+  if (!sitesList.includes(window.location.origin)) return null;
 
   return (
     <Container>
