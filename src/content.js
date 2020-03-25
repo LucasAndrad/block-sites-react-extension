@@ -1,35 +1,53 @@
-import 'libs/polyfills';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider, StyleSheetManager } from 'styled-components';
-import Box from 'components/Box';
-import Example from 'components/Example';
-import defaultTheme from 'themes/default';
+import styled from 'styled-components';
+import browser from 'webextension-polyfill';
 
-const root = document.createElement('div');
-const shadow = root.attachShadow({ mode: 'open' });
+const Container = styled.div`
+  background: red;
+`;
 
-const styleContainer = document.createElement('div');
-const appContainer = document.createElement('div');
+const Modal = () => {
+  const [sitesList, setSitesList] = useState([]);
+  const [startListener, setStartListener] = useState(false);
 
-shadow.appendChild(styleContainer);
-shadow.appendChild(appContainer);
+  const websitesListener = changes => {
+    const { newValue = [], oldValue = [] } = changes.websites;
+    if (newValue.lenght !== oldValue.length) {
+      setSitesList(changes.websites.newValue);
+    }
+  };
+  useEffect(() => {
+    if (!sitesList.length) {
+      browser.storage.local.get('websites').then(({ websites = [] }) => {
+        setSitesList(websites);
+      });
+    }
+  }, []);
 
-document.body.appendChild(root);
+  useEffect(() => {
+    if (!startListener) {
+      browser.storage.onChanged.addListener(websitesListener);
+      setStartListener(true);
+    }
+  }, []);
 
-const App = () => {
-  // Use this file to display something on screen
-  return null;
+  useEffect(() => {
+    return function removeListener() {
+      if (startListener) {
+        browser.storage.onChanged.removeListener(websitesListener);
+      }
+    };
+  });
 
-  // return (
-  //   <StyleSheetManager target={styleContainer}>
-  //     <ThemeProvider theme={defaultTheme}>
-  //       <Box position="fixed" bottom={3} right={3}>
-  //         <Example />
-  //       </Box>
-  //     </ThemeProvider>
-  //   </StyleSheetManager>
-  // );
+  return (
+    <Container>
+      <h1>Hello world - My first Extensionn</h1>
+    </Container>
+  );
 };
 
-ReactDOM.render(<App />, appContainer);
+const app = document.createElement('div');
+app.id = 'modal-root';
+document.body.appendChild(app);
+ReactDOM.render(<Modal />, app);
