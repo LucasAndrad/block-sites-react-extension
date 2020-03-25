@@ -4,14 +4,21 @@ import styled from 'styled-components';
 import browser from 'webextension-polyfill';
 
 const Container = styled.div`
-  position: absolute;
-  background: red;
+  position: fixed;
   margin: 0 auto;
-  top: 100px;
-  width: 400px;
+  width: 100%;
+  height: 100%;
   z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.95);
+`;
+
+const ModalContent = styled.div`
+  position: absolute;
+  z-index: 10500;
+  background: red;
   left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const Modal = () => {
@@ -51,7 +58,9 @@ const Modal = () => {
 
   return (
     <Container>
-      <h1>Hello world - My first Extensionn</h1>
+      <ModalContent>
+        <h1>Hello world - My first Extensionn</h1>
+      </ModalContent>
     </Container>
   );
 };
