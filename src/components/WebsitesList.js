@@ -39,7 +39,7 @@ const WebsitesList = () => {
   const [startListener, setStartListener] = useState(false);
 
   const websitesListener = changes => {
-    const { newValue, oldValue } = changes.websites;
+    const { newValue = [], oldValue = [] } = changes.websites;
     if (newValue.lenght !== oldValue.length) {
       setSitesList(changes.websites.newValue.reverse());
     }
@@ -47,7 +47,7 @@ const WebsitesList = () => {
 
   useEffect(async () => {
     if (!sitesList.length) {
-      const { websites } = await browser.storage.local.get('websites');
+      const { websites = [] } = await browser.storage.local.get('websites');
       setSitesList(websites.reverse());
     }
   }, []);
