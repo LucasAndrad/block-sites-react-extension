@@ -10,13 +10,13 @@ const Example = styled.div`
 `;
 
 export default () => {
-  const greeting = chrome.i18n.getMessage('greeting');
+  // const greeting = chrome.i18n.getMessage('greeting');
 
   return (
     <Example>
       <Box display="flex" alignItems="center">
         <Logo width="50px" height="50px" />
-        {greeting}
+        Lucas Andrade
       </Box>
     </Example>
   );

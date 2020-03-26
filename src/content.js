@@ -4,6 +4,7 @@ import theme from 'themes/default';
 import styled, { ThemeProvider } from 'styled-components';
 import browser from 'webextension-polyfill';
 import { H1, H3, Quote } from './components/Common';
+import { quotes } from './assets/quotes.json';
 
 const Container = styled.div`
   position: fixed;
@@ -60,6 +61,8 @@ const Modal = () => {
     };
   });
 
+  const quote = quotes[(Math.random() * quotes.length) | 0];
+
   if (!sitesList.includes(window.location.origin)) return null;
 
   return (
@@ -68,6 +71,8 @@ const Modal = () => {
         <ModalContent>
           <H1>{`Hey, you should't be here\nTry to keep your focus\nYou can do it`}</H1>
           <H3 size="1.5em">Maybe these words can help</H3>
+          <Quote>{`"${quote.text}"`}</Quote>
+          <Quote>{quote.author}</Quote>
         </ModalContent>
       </Container>
     </ThemeProvider>
