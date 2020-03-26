@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import theme from 'themes/default';
 import styled, { ThemeProvider } from 'styled-components';
-import browser from 'webextension-polyfill';
 import { H1, H3, Quote } from './components/Common';
 import { quotes } from './assets/quotes.json';
+import { useWebsitesList } from './hooks';
 
 const Container = styled.div`
   position: fixed;
@@ -40,37 +40,7 @@ const QuoteText = styled.div`
 `;
 
 const Modal = () => {
-  const [sitesList, setSitesList] = useState([]);
-  const [startListener, setStartListener] = useState(false);
-
-  const websitesListener = changes => {
-    const { newValue = [], oldValue = [] } = changes.websites;
-    if (newValue.lenght !== oldValue.length) {
-      setSitesList(changes.websites.newValue);
-    }
-  };
-  useEffect(() => {
-    if (!sitesList.length) {
-      browser.storage.local.get('websites').then(({ websites = [] }) => {
-        setSitesList(websites);
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!startListener) {
-      browser.storage.onChanged.addListener(websitesListener);
-      setStartListener(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    return function removeListener() {
-      if (startListener) {
-        browser.storage.onChanged.removeListener(websitesListener);
-      }
-    };
-  });
+  const sitesList = useWebsitesList();
 
   const quote = quotes[(Math.random() * quotes.length) | 0];
 
@@ -82,7 +52,7 @@ const Modal = () => {
         <ModalContent>
           <H1>{`Hey, you should't be here\nTry to keep focus\nYou can do it`}</H1>
           <QuoteContainer>
-            <H3 size="1.5em">Maybe these words can help</H3>
+            <H3 size="2em">Maybe these words can help</H3>
             <QuoteText>
               <Quote>{`"${quote.text}"`}</Quote>
               <Quote>{quote.author}</Quote>
