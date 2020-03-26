@@ -11,6 +11,7 @@ export default function useWebsitesList() {
       setSitesList(changes.websites.newValue);
     }
   };
+
   useEffect(() => {
     if (!sitesList.length) {
       browser.storage.local.get('websites').then(({ websites = [] }) => {

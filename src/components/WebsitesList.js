@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import browser from 'webextension-polyfill';
 import TrashIcon from 'assets/icons/trash.svg';
 import { LinkText } from './Common';
+import { useWebsitesList } from '../hooks';
 
 const ListContainer = styled.div`
   height: 250px;
@@ -35,37 +36,7 @@ const IconButton = styled.div`
 `;
 
 const WebsitesList = () => {
-  const [sitesList, setSitesList] = useState([]);
-  const [startListener, setStartListener] = useState(false);
-
-  const websitesListener = changes => {
-    const { newValue = [], oldValue = [] } = changes.websites;
-    if (newValue.lenght !== oldValue.length) {
-      setSitesList(changes.websites.newValue.reverse());
-    }
-  };
-
-  useEffect(async () => {
-    if (!sitesList.length) {
-      const { websites = [] } = await browser.storage.local.get('websites');
-      setSitesList(websites.reverse());
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!startListener) {
-      browser.storage.onChanged.addListener(websitesListener);
-      setStartListener(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    return function removeListener() {
-      if (startListener) {
-        browser.storage.onChanged.removeListener(websitesListener);
-      }
-    };
-  });
+  const sitesList = useWebsitesList();
 
   const removeLink = link => {
     const newList = sitesList.reverse().filter(site => {
