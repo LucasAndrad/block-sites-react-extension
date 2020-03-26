@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+import theme from 'themes/default';
+import styled, { ThemeProvider } from 'styled-components';
 import browser from 'webextension-polyfill';
+import { H1, H3, Quote } from './components/Common';
 
 const Container = styled.div`
   position: fixed;
@@ -15,7 +17,11 @@ const Container = styled.div`
 const ModalContent = styled.div`
   position: absolute;
   z-index: 10500;
-  background: red;
+  background: #ffffff;
+  width: 550px;
+  height: 350px;
+  padding: 20px 50px;
+  border-radius: 1px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -57,11 +63,14 @@ const Modal = () => {
   if (!sitesList.includes(window.location.origin)) return null;
 
   return (
-    <Container>
-      <ModalContent>
-        <h1>Hello world - My first Extensionn</h1>
-      </ModalContent>
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <ModalContent>
+          <H1>{`Hey, you should't be here\nTry to keep your focus\nYou can do it`}</H1>
+          <H3 size="1.5em">Maybe these words can help</H3>
+        </ModalContent>
+      </Container>
+    </ThemeProvider>
   );
 };
 

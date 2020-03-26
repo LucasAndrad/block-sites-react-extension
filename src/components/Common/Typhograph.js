@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const H3 = styled.h3`
   color: ${props => props.theme.colors.green};
+  font-size: ${props => props.size || '1.2em'};
 `;
 
 export const Paragraph = styled.p`
@@ -14,4 +15,21 @@ export const LinkText = styled.h5`
   color: ${props => props.theme.colors.text};
   margin-top: 5px;
   margin-bottom: 20px;
+`;
+
+export const H1 = styled.h1`
+  font-size: 3rem;
+  font-family: sans-serif;
+  white-space: pre-line;
+  line-height: 1.5em;
+  color: ${props => props.theme.colors.text};
+`;
+
+export const Quote = styled.p`
+  font-size: 1.3rem;
+  font-family: serif;
+  white-space: pre-line;
+  line-height: 1.1em;
+  color: ${props => props.theme.colors.text};
+  font-style: italic;
 `;
