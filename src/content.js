@@ -28,6 +28,17 @@ const ModalContent = styled.div`
   transform: translate(-50%, -50%);
 `;
 
+const QuoteContainer = styled.div`
+  position: relative;
+  height: 50%;
+  padding-top: 50px;
+`;
+
+const QuoteText = styled.div`
+  position: absolute;
+  bottom: 10px;
+`;
+
 const Modal = () => {
   const [sitesList, setSitesList] = useState([]);
   const [startListener, setStartListener] = useState(false);
@@ -69,10 +80,14 @@ const Modal = () => {
     <ThemeProvider theme={theme}>
       <Container>
         <ModalContent>
-          <H1>{`Hey, you should't be here\nTry to keep your focus\nYou can do it`}</H1>
-          <H3 size="1.5em">Maybe these words can help</H3>
-          <Quote>{`"${quote.text}"`}</Quote>
-          <Quote>{quote.author}</Quote>
+          <H1>{`Hey, you should't be here\nTry to keep focus\nYou can do it`}</H1>
+          <QuoteContainer>
+            <H3 size="1.5em">Maybe these words can help</H3>
+            <QuoteText>
+              <Quote>{`"${quote.text}"`}</Quote>
+              <Quote>{quote.author}</Quote>
+            </QuoteText>
+          </QuoteContainer>
         </ModalContent>
       </Container>
     </ThemeProvider>
