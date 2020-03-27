@@ -3,26 +3,7 @@ import styled from 'styled-components';
 import browser from 'webextension-polyfill';
 import { Button } from './Common';
 import WebsitesList from './WebsitesList';
-
-const Form = styled.div`
-  width: 100%;
-  border-top: 1px solid ${props => props.theme.colors.border};
-`;
-
-const Input = styled.input`
-  margin-top: 20px;
-  padding: 10px;
-  width: 100%;
-  max-width: calc(100% - 18px);
-  border: 1px solid ${props => props.theme.colors.border};
-  border-radius: 5px;
-  box-shadow: none;
-  font-size: 0.9rem;
-  &:focus {
-    -webkit-appearance: none;
-    outline: none;
-  }
-`;
+import Toggle from './Toggle';
 
 // chrome extensions docs
 // https://developer.chrome.com/apps/storage#property-local
@@ -50,9 +31,30 @@ const Container = () => {
       <Button onClick={() => saveLink()} mt={16}>
         Add Link
       </Button>
+      <Toggle />
       <WebsitesList />
     </Form>
   );
 };
+
+const Form = styled.div`
+  width: 100%;
+  border-top: 1px solid ${props => props.theme.colors.border};
+`;
+
+const Input = styled.input`
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: calc(100% - 18px);
+  border: 1px solid ${props => props.theme.colors.border};
+  border-radius: 5px;
+  box-shadow: none;
+  font-size: 0.9rem;
+  &:focus {
+    -webkit-appearance: none;
+    outline: none;
+  }
+`;
 
 export default Container;

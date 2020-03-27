@@ -6,6 +6,31 @@ import { H1, H3, Quote } from './components/Common';
 import { quotes } from './assets/quotes.json';
 import { useWebsitesList } from './hooks';
 
+const Modal = () => {
+  const sitesList = useWebsitesList();
+
+  const quote = quotes[(Math.random() * quotes.length) | 0];
+
+  if (!sitesList.includes(window.location.origin)) return null;
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container>
+        <ModalContent>
+          <H1>{`Hey, you should't be here\nTry to keep focus\nYou can do it`}</H1>
+          <QuoteContainer>
+            <H3 size="2em">Maybe these words can help</H3>
+            <QuoteText>
+              <Quote>{`"${quote.text}"`}</Quote>
+              <Quote>{quote.author}</Quote>
+            </QuoteText>
+          </QuoteContainer>
+        </ModalContent>
+      </Container>
+    </ThemeProvider>
+  );
+};
+
 const Container = styled.div`
   position: fixed;
   margin: 0 auto;
@@ -38,31 +63,6 @@ const QuoteText = styled.div`
   position: absolute;
   bottom: 10px;
 `;
-
-const Modal = () => {
-  const sitesList = useWebsitesList();
-
-  const quote = quotes[(Math.random() * quotes.length) | 0];
-
-  if (!sitesList.includes(window.location.origin)) return null;
-
-  return (
-    <ThemeProvider theme={theme}>
-      <Container>
-        <ModalContent>
-          <H1>{`Hey, you should't be here\nTry to keep focus\nYou can do it`}</H1>
-          <QuoteContainer>
-            <H3 size="2em">Maybe these words can help</H3>
-            <QuoteText>
-              <Quote>{`"${quote.text}"`}</Quote>
-              <Quote>{quote.author}</Quote>
-            </QuoteText>
-          </QuoteContainer>
-        </ModalContent>
-      </Container>
-    </ThemeProvider>
-  );
-};
 
 const app = document.createElement('div');
 app.id = 'modal-root';

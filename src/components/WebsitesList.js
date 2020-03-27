@@ -5,6 +5,33 @@ import TrashIcon from 'assets/icons/trash.svg';
 import { LinkText } from './Common';
 import { useWebsitesList } from '../hooks';
 
+const WebsitesList = () => {
+  const sitesList = useWebsitesList();
+
+  const removeLink = link => {
+    const newList = sitesList.reverse().filter(site => {
+      return site !== link;
+    });
+
+    browser.storage.local.set({ websites: newList });
+  };
+
+  if (!sitesList || !sitesList.length) return <h4>No websites on your list</h4>;
+
+  return (
+    <ListContainer>
+      {sitesList.map(site => (
+        <LinkContainer>
+          <LinkText>{site}</LinkText>
+          <IconButton onClick={() => removeLink(site)}>
+            <TrashIcon width="16px" height="16px" />
+          </IconButton>
+        </LinkContainer>
+      ))}
+    </ListContainer>
+  );
+};
+
 const ListContainer = styled.div`
   height: 250px;
   width: 100%;
@@ -34,32 +61,5 @@ const IconButton = styled.div`
     background-color: ${props => props.theme.colors.lightRed};
   }
 `;
-
-const WebsitesList = () => {
-  const sitesList = useWebsitesList();
-
-  const removeLink = link => {
-    const newList = sitesList.reverse().filter(site => {
-      return site !== link;
-    });
-
-    browser.storage.local.set({ websites: newList });
-  };
-
-  if (!sitesList || !sitesList.length) return <h4>No websites on your list</h4>;
-
-  return (
-    <ListContainer>
-      {sitesList.map(site => (
-        <LinkContainer>
-          <LinkText>{site}</LinkText>
-          <IconButton onClick={() => removeLink(site)}>
-            <TrashIcon width="16px" height="16px" />
-          </IconButton>
-        </LinkContainer>
-      ))}
-    </ListContainer>
-  );
-};
 
 export default WebsitesList;
