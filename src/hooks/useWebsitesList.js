@@ -8,15 +8,13 @@ export default function useWebsitesList() {
   const websitesListener = changes => {
     const { newValue = {}, oldValue = {} } = changes.groups;
     if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
-      setGroups(changes.groups.newValue);
+      setGroups(newValue);
     }
   };
 
   useEffect(() => {
     if (!Object.keys(groups).length) {
       browser.storage.local.get('groups').then(({ groups: groupsGet = {} }) => {
-        console.log('----- groups list ------');
-        console.log(groupsGet);
         setGroups(groupsGet);
       });
     }

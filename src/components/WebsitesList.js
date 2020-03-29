@@ -16,16 +16,16 @@ const WebsitesList = ({ groups, groupSelect }) => {
   };
 
   const sitesList = () => {
-    if (!groups[groupSelect].sitesList.length) return [];
+    if (!groups[groupSelect] || !groups[groupSelect].sitesList.length) return [];
 
     return groups[groupSelect].sitesList;
   };
 
-  if (!sitesList || !sitesList.length) return <h4>No websites on your list</h4>;
+  if (!groups || !sitesList().length) return <h4>No websites on your list</h4>;
 
   return (
     <ListContainer>
-      {sitesList.map(site => (
+      {sitesList().map(site => (
         <LinkContainer>
           <LinkText>{site}</LinkText>
           <IconButton onClick={() => removeLink(site)} colorHover="lightRed">
