@@ -22,6 +22,7 @@ GroupsSelect.propTypes = {
 
 const Select = styled.select`
   ${space}
+  cursor: pointer;
   width: 100%;
   font-size: 0.85rem;
   height: 40px;
@@ -30,9 +31,15 @@ const Select = styled.select`
   border-radius: 5px;
   box-shadow: none;
   padding-left: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url('../../assets/icons/arrowDown.svg') no-repeat;
+  background-position: right 10px top 50%;
   &:focus {
     -webkit-appearance: none;
     outline: none;
+    background: url('../../assets/icons/arrowDownActive.svg') no-repeat;
+    background-position: right 10px top 50%;
   }
 `;
 const Option = styled.option``;
