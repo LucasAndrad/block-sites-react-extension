@@ -20,9 +20,11 @@ const Modal = () => {
           <H1 style={{ marginTop: '0px', textAlign: 'left' }}>
             {`Hey, you should't be here\nTry to keep focus\nYou can do it`}
           </H1>
-          <H3>Maybe these words can help</H3>
-          <Quote>{`"${quote.text}"`}</Quote>
-          <Quote>{quote.author}</Quote>
+          <H3 style={{ marginTop: '5%' }}>Maybe these words can help</H3>
+          <QuoteContainer>
+            <Quote>{`"${quote.text}"`}</Quote>
+            <Quote>{quote.author}</Quote>
+          </QuoteContainer>
         </ModalContent>
       </Container>
     </ThemeProvider>
@@ -43,6 +45,10 @@ const Container = styled.div`
   height: 100%;
   z-index: 10000;
   background-color: rgba(0, 0, 0, 0.95);
+`;
+
+const QuoteContainer = styled.div`
+  margin-top: 10%;
 `;
 
 const ModalContent = styled.div`
