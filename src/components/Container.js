@@ -39,7 +39,7 @@ const Container = () => {
   return (
     <>
       <GroupsSelect
-        groups={groupsNames}
+        groups={groupsNames()}
         setDisplayForm={setDisplayForm}
         groupSelect={groupSelect}
         setGroupSelect={setGroupSelect}

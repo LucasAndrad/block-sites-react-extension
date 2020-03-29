@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import browser from 'webextension-polyfill';
 import { Form, Input, Button } from '../Common';
 
-const GroupForm = () => {
+const GroupForm = ({ setDisplayForm }) => {
   const [inputValue, setInputValue] = useState('');
 
-  const saveGroup = ({ setDisplayForm }) => {
+  const saveGroup = () => {
     browser.storage.local.get('groups').then(({ groups = {} }) => {
       if (groups[inputValue]) return null;
 
       groups[inputValue] = {
         name: inputValue,
+        active: true,
         startTime: '',
         endTime: '',
         sitesList: [],

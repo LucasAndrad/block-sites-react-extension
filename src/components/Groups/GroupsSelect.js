@@ -25,13 +25,15 @@ const GroupsSelect = ({ groups, setDisplayForm, groupSelect, setGroupSelect }) =
         <Option disabled selected value>
           select a group
         </Option>
-        {groups.map(group => {
-          return (
-            <Option selected={groupSelect} value={group}>
-              {group}
-            </Option>
-          );
-        })}
+        {groups.length
+          ? groups.map(group => {
+              return (
+                <Option selected={groupSelect} value={group}>
+                  {group}
+                </Option>
+              );
+            })
+          : null}
       </Select>
       <IconButton onClick={() => setDisplayForm(true)} color="green" colorHover="darkGreen">
         <PlusIcon width="16px" height="16px" />
