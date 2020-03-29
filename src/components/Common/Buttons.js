@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 import { space } from 'styled-system';
 
@@ -17,5 +16,24 @@ export const Button = styled.button`
   &:hover {
     background-color: ${props => props.theme.colors.lightGreen};
     color: ${props => props.theme.colors.text};
+  }
+`;
+
+export const IconButton = styled.div`
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.5s;
+  background-color: ${props => (props.color ? props.theme.colors[props.color] : '#ffffff')};
+  &:hover {
+    border: 1px solid ${props => props.theme.colors.border};
+    opacity: 0.7;
+    cursor: pointer;
+    background-color: ${props =>
+      props.colorHover ? props.theme.colors[props.colorHover] : '#ffffff'};
   }
 `;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import browser from 'webextension-polyfill';
 import TrashIcon from '../assets/icons/trash.svg';
-import { LinkText } from './Common';
+import { LinkText, IconButton } from './Common';
 
 const WebsitesList = ({ sitesList }) => {
   const removeLink = link => {
@@ -21,7 +21,7 @@ const WebsitesList = ({ sitesList }) => {
       {sitesList.map(site => (
         <LinkContainer>
           <LinkText>{site}</LinkText>
-          <IconButton onClick={() => removeLink(site)}>
+          <IconButton onClick={() => removeLink(site)} colorHover="lightRed">
             <TrashIcon width="16px" height="16px" />
           </IconButton>
         </LinkContainer>
@@ -45,23 +45,6 @@ const LinkContainer = styled.div`
   width: 95%;
   justify-content: space-between;
   align-items: center;
-`;
-
-const IconButton = styled.div`
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1px solid #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.5s;
-  &:hover {
-    border: 1px solid ${props => props.theme.colors.border};
-    opacity: 0.7;
-    cursor: pointer;
-    background-color: ${props => props.theme.colors.lightRed};
-  }
 `;
 
 export default WebsitesList;

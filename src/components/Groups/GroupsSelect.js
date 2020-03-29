@@ -2,17 +2,31 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { space } from 'styled-system';
+import { Form, IconButton } from '../Common';
+import PlusIcon from '../../assets/icons/plus.svg';
 
 const GroupsSelect = ({ groups }) => {
   return (
-    <Select>
-      <Option disabled selected value>
-        select a group
-      </Option>
-      {groups.map(group => {
-        return <Option value={group}>{group}</Option>;
-      })}
-    </Select>
+    <Form
+      style={{
+        width: '95%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
+    >
+      <Select>
+        <Option disabled selected value>
+          select a group
+        </Option>
+        {groups.map(group => {
+          return <Option value={group}>{group}</Option>;
+        })}
+      </Select>
+      <IconButton onClick={() => removeLink(site)} color="green" colorHover="darkGreen">
+        <PlusIcon width="16px" height="16px" />
+      </IconButton>
+    </Form>
   );
 };
 
@@ -23,7 +37,7 @@ GroupsSelect.propTypes = {
 const Select = styled.select`
   ${space}
   cursor: pointer;
-  width: 100%;
+  width: 85%;
   font-size: 0.85rem;
   height: 40px;
   margin: 20px 0;
