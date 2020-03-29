@@ -1,9 +1,9 @@
-import 'libs/polyfills';
+// import 'libs/polyfills';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
-import Box from 'components/Box';
-import theme from 'themes/default';
+import Box from './components/Box';
+import theme from './themes/default';
 import Container from './components/Container';
 import { H3 } from './components/Common';
 

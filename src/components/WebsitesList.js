@@ -5,13 +5,20 @@ import browser from 'webextension-polyfill';
 import TrashIcon from '../assets/icons/trash.svg';
 import { LinkText, IconButton } from './Common';
 
-const WebsitesList = ({ sitesList }) => {
+const WebsitesList = ({ groups, groupSelect }) => {
   const removeLink = link => {
-    const newList = sitesList.reverse().filter(site => {
+    const newList = groups[groupSelect].sitesList.filter(site => {
       return site !== link;
     });
 
-    browser.storage.local.set({ websites: newList });
+    groups[groupSelect].sitesList = newList;
+    browser.storage.local.set({ groups });
+  };
+
+  const sitesList = () => {
+    if (!groups[groupSelect].sitesList.length) return [];
+
+    return groups[groupSelect].sitesList;
   };
 
   if (!sitesList || !sitesList.length) return <h4>No websites on your list</h4>;
@@ -31,7 +38,8 @@ const WebsitesList = ({ sitesList }) => {
 };
 
 WebsitesList.propTypes = {
-  sitesList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  groups: PropTypes.shape().isRequired,
+  groupSelect: PropTypes.string.isRequired,
 };
 
 const ListContainer = styled.div`

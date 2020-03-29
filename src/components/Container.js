@@ -20,13 +20,14 @@ const Container = () => {
     return names;
   };
 
-  const saveLink = async () => {
-    const { websites = [] } = await browser.storage.local.get('websites');
+  const saveLink = () => {
+    const websites = groups[groupSelect].sitesList || [];
     if (!inputValue.length || (websites && websites.length)) {
       if (websites.includes(inputValue)) return null;
     }
     websites.push(inputValue);
-    browser.storage.local.set({ websites });
+    groups[groupSelect].sitesList = websites;
+    browser.storage.local.set({ groups });
     setInputValue('');
   };
 
@@ -38,7 +39,7 @@ const Container = () => {
   return (
     <>
       <GroupsSelect
-        groups={groupsNames()}
+        groups={groupsNames}
         setDisplayForm={setDisplayForm}
         groupSelect={groupSelect}
         setGroupSelect={setGroupSelect}
@@ -52,7 +53,7 @@ const Container = () => {
             Add Link
           </Button>
           <Toggle />
-          <WebsitesList sitesList={sitesList} />
+          <WebsitesList groups={groups} groupSelect={groupSelect} />
         </Form>
       ) : null}
     </>

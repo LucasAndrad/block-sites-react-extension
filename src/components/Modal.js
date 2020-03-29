@@ -6,14 +6,22 @@ import { quotes } from '../assets/quotes.json';
 import { useWebsitesList } from '../hooks';
 
 const Modal = () => {
-  const sitesList = useWebsitesList();
+  const groups = useWebsitesList();
 
   const quote = quotes[(Math.random() * quotes.length) | 0];
 
   const showCurrentLink = () => {
     let show = true;
     const currentUrl = window.location.origin;
-    sitesList.forEach(site => {
+
+    let allSites = [];
+
+    Object.values(groups).forEach(group => {
+      if (!allSites.length) allSites = group.sitesList;
+      else allSites.concat(group.sitesList);
+    });
+
+    allSites.forEach(site => {
       if (currentUrl.includes(site)) show = false;
     });
 
