@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import browser from 'webextension-polyfill';
-import TrashIcon from 'assets/icons/trash.svg';
+import TrashIcon from '../assets/icons/trash.svg';
 import { LinkText } from './Common';
-import { useWebsitesList } from '../hooks';
 
-const WebsitesList = () => {
-  const sitesList = useWebsitesList();
-
+const WebsitesList = ({ sitesList }) => {
   const removeLink = link => {
     const newList = sitesList.reverse().filter(site => {
       return site !== link;
@@ -30,6 +28,10 @@ const WebsitesList = () => {
       ))}
     </ListContainer>
   );
+};
+
+WebsitesList.propTypes = {
+  sitesList: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const ListContainer = styled.div`
