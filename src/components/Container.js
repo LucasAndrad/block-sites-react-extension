@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import browser from 'webextension-polyfill';
 import { Button, Form, Input } from './Common';
-import { GroupsSelect, GroupForm } from './Groups';
+import { GroupsSelect, GroupForm, RemoveGroup } from './Groups';
 import WebsitesList from './WebsitesList';
 import Toggle from './Toggle';
 import { useWebsitesList } from '../hooks';
@@ -46,15 +46,22 @@ const Container = () => {
       />
       {displayForm ? <GroupForm setDisplayForm={setDisplayForm} /> : null}
 
-      {!displayForm ? (
-        <Form>
-          <Input value={inputValue} onChange={e => handleInputChange(e)} />
-          <Button onClick={() => saveLink()} mt={16}>
-            Add Link
-          </Button>
-          <Toggle />
-          <WebsitesList groups={groups} groupSelect={groupSelect} />
-        </Form>
+      {!displayForm && groupSelect.length ? (
+        <>
+          <RemoveGroup groups={groups} groupSelect={groupSelect} setGroupSelect={setGroupSelect} />
+          <Form>
+            <Input
+              value={inputValue}
+              onChange={e => handleInputChange(e)}
+              placeholder="link, example: http://linkname.com"
+            />
+            <Button onClick={() => saveLink()} mt={16}>
+              Add Link
+            </Button>
+            <Toggle />
+            <WebsitesList groups={groups} groupSelect={groupSelect} />
+          </Form>
+        </>
       ) : null}
     </>
   );

@@ -30,7 +30,11 @@ const GroupForm = ({ setDisplayForm }) => {
 
   return (
     <Form>
-      <Input value={inputValue} onChange={e => handleInputChange(e)} />
+      <Input
+        value={inputValue}
+        onChange={e => handleInputChange(e)}
+        placeholder="Group name (no spaces)"
+      />
       <Button onClick={() => saveGroup()} mt={16}>
         Add Group
       </Button>
