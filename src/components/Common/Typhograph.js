@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
 export const H3 = styled.h3`
+  all: initial;
+  display: block;
+  font-weight: bold;
+  font-family: sans-serif;
   color: ${props => props.theme.colors.green};
   font-size: ${props => props.size || '1.2rem'};
 `;
 
 export const Paragraph = styled.p`
+  all: initial;
   color: ${props => props.theme.colors.text};
 `;
 
@@ -18,7 +23,9 @@ export const LinkText = styled.h5`
 `;
 
 export const H1 = styled.h1`
+  all: initial;
   font-size: 2rem;
+  display: block;
   font-family: sans-serif;
   white-space: pre-line;
   color: ${props => props.theme.colors.text};
