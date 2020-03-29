@@ -18,7 +18,7 @@ const Modal = () => {
 
     Object.values(groups).forEach(group => {
       if (!allSites.length) allSites = group.sitesList;
-      else allSites.concat(group.sitesList);
+      else allSites = allSites.concat(group.sitesList);
     });
 
     allSites.forEach(site => {
