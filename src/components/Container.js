@@ -32,7 +32,7 @@ const Container = () => {
   return (
     <>
       <GroupsSelect groups={['Work', 'Study']} setDisplayForm={setDisplayForm} />
-      {displayForm ? <GroupForm /> : null}
+      {displayForm ? <GroupForm setDisplayForm={setDisplayForm} /> : null}
 
       {!displayForm ? (
         <Form>

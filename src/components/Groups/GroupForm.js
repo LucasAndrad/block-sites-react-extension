@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import browser from 'webextension-polyfill';
 import { Form, Input, Button } from '../Common';
 
 const GroupForm = () => {
   const [inputValue, setInputValue] = useState('');
 
-  const saveGroup = () => {
+  const saveGroup = ({ setDisplayForm }) => {
     browser.storage.local.get('groups').then(({ groups = {} }) => {
       if (groups[inputValue]) return null;
 
@@ -16,6 +17,7 @@ const GroupForm = () => {
         sitesList: [],
       };
       browser.storage.local.set({ groups });
+      setDisplayForm(false);
       return true;
     });
   };
@@ -33,6 +35,10 @@ const GroupForm = () => {
       </Button>
     </Form>
   );
+};
+
+GroupForm.propTypes = {
+  setDisplayForm: PropTypes.func.isRequired,
 };
 
 export default GroupForm;
