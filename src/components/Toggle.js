@@ -1,28 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Toggle = () => {
-  const [active, setActive] = useState(true);
-
+const Toggle = ({ active, toggleActive }) => {
   return (
     <ToggleContainer>
       <CheckBoxWrapper>
-        <CheckBox
-          id="checkbox"
-          type="checkbox"
-          checked={active}
-          onChange={() => setActive(!active)}
-        />
+        <CheckBox id="checkbox" type="checkbox" checked={active} onChange={() => toggleActive()} />
         <CheckBoxLabel htmlFor="checkbox" />
       </CheckBoxWrapper>
     </ToggleContainer>
   );
 };
 
+Toggle.propTypes = {
+  active: PropTypes.bool.isRequired,
+  toggleActive: PropTypes.func.isRequired,
+};
+
 const ToggleContainer = styled.div`
   float: right;
-  margin-right: 15px;
-  margin-top: 15px;
 `;
 
 const CheckBoxWrapper = styled.div`

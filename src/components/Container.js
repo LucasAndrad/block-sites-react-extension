@@ -4,7 +4,6 @@ import browser from 'webextension-polyfill';
 import { Button, Form, Input } from './Common';
 import { GroupsSelect, GroupForm, RemoveGroup } from './Groups';
 import WebsitesList from './WebsitesList';
-import Toggle from './Toggle';
 import { useWebsitesList } from '../hooks';
 
 // chrome extensions docs
@@ -58,7 +57,6 @@ const Container = () => {
             <Button onClick={() => saveLink()} mt={16}>
               Add Link
             </Button>
-            <Toggle />
             <WebsitesList groups={groups} groupSelect={groupSelect} />
           </Form>
         </>

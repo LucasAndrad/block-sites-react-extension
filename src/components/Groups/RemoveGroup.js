@@ -3,31 +3,41 @@ import PropTypes from 'prop-types';
 import browser from 'webextension-polyfill';
 import styled from 'styled-components';
 import { IconButton, H3 } from '../Common';
+import Toggle from '../Toggle';
 import TrashIcon from '../../assets/icons/trash.svg';
 
 const RemoveGroup = ({ groups, groupSelect, setGroupSelect }) => {
   const remove = () => {
-    const newGroup = JSON.parse(JSON.stringify(groups));
-    delete newGroup[groupSelect];
+    const newGroups = JSON.parse(JSON.stringify(groups));
+    delete newGroups[groupSelect];
 
-    browser.storage.local.set({ groups: newGroup });
+    browser.storage.local.set({ groups: newGroups });
     setGroupSelect('');
+  };
+
+  const toggleActive = () => {
+    const newGroups = JSON.parse(JSON.stringify(groups));
+    newGroups[groupSelect].active = !groups[groupSelect].active;
+    browser.storage.local.set({ groups: newGroups });
   };
 
   return (
     <Container>
       <H3>{groupSelect}</H3>
-      <IconButton onClick={() => remove()} colorHover="lightRed">
-        <TrashIcon width="16px" height="16px" />
-      </IconButton>
+      <Container width="35%" justify="flex-end">
+        <Toggle active={groups[groupSelect].active} toggleActive={toggleActive} />
+        <IconButton onClick={() => remove()} colorHover="lightRed">
+          <TrashIcon width="16px" height="16px" />
+        </IconButton>
+      </Container>
     </Container>
   );
 };
 
 const Container = styled.div`
-  width: 100%;
+  width: ${props => props.width || '100%'};
   display: flex;
-  justify-content: space-between;
+  justify-content: ${props => props.justify || 'space-between'};
   align-items: center;
 `;
 
