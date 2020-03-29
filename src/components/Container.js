@@ -12,7 +12,12 @@ import { useWebsitesList } from '../hooks';
 const Container = () => {
   const [inputValue, setInputValue] = useState('');
   const [displayForm, setDisplayForm] = useState(false);
-  const sitesList = useWebsitesList();
+  const groups = useWebsitesList();
+
+  const groupsNames = () => {
+    const names = Object.keys(groups) || [''];
+    return names;
+  };
 
   const saveLink = async () => {
     const { websites = [] } = await browser.storage.local.get('websites');
@@ -31,7 +36,7 @@ const Container = () => {
 
   return (
     <>
-      <GroupsSelect groups={['Work', 'Study']} setDisplayForm={setDisplayForm} />
+      <GroupsSelect groups={groupsNames()} setDisplayForm={setDisplayForm} />
       {displayForm ? <GroupForm setDisplayForm={setDisplayForm} /> : null}
 
       {!displayForm ? (

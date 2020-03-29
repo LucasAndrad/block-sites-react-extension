@@ -2,20 +2,20 @@ import { useState, useEffect } from 'react';
 import browser from 'webextension-polyfill';
 
 export default function useWebsitesList() {
-  const [sitesList, setSitesList] = useState([]);
+  const [groups, setGroups] = useState([]);
   const [startListener, setStartListener] = useState(false);
 
   const websitesListener = changes => {
-    const { newValue = [], oldValue = [] } = changes.websites;
-    if (newValue.lenght !== oldValue.length) {
-      setSitesList(changes.websites.newValue);
+    const { newValue = {}, oldValue = {} } = changes.websites;
+    if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
+      setGroups(changes.websites.newValue);
     }
   };
 
   useEffect(() => {
-    if (!sitesList.length) {
-      browser.storage.local.get('websites').then(({ websites = [] }) => {
-        setSitesList(websites);
+    if (Object.values(groups).length) {
+      browser.storage.local.get('groups').then(({ groupsGet = {} }) => {
+        setGroups(groupsGet);
       });
     }
   }, []);
@@ -35,5 +35,5 @@ export default function useWebsitesList() {
     };
   });
 
-  return sitesList;
+  return groups;
 }
