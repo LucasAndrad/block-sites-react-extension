@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import browser from 'webextension-polyfill';
-import { Button } from './Common';
+import { Button, Form, Input } from './Common';
 import WebsitesList from './WebsitesList';
 import Toggle from './Toggle';
+import { useWebsitesList } from '../hooks';
 
 // chrome extensions docs
 // https://developer.chrome.com/apps/storage#property-local
 const Container = () => {
   const [inputValue, setInputValue] = useState('');
+  const sitesList = useWebsitesList();
 
   const saveLink = async () => {
     const { websites = [] } = await browser.storage.local.get('websites');
@@ -32,29 +34,9 @@ const Container = () => {
         Add Link
       </Button>
       <Toggle />
-      <WebsitesList />
+      <WebsitesList sitesList={sitesList} />
     </Form>
   );
 };
-
-const Form = styled.div`
-  width: 100%;
-  border-top: 1px solid ${props => props.theme.colors.border};
-`;
-
-const Input = styled.input`
-  margin-top: 20px;
-  padding: 10px;
-  width: 100%;
-  max-width: calc(100% - 18px);
-  border: 1px solid ${props => props.theme.colors.border};
-  border-radius: 5px;
-  box-shadow: none;
-  font-size: 0.9rem;
-  &:focus {
-    -webkit-appearance: none;
-    outline: none;
-  }
-`;
 
 export default Container;
