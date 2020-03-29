@@ -5,7 +5,12 @@ import { space } from 'styled-system';
 import { Form, IconButton } from '../Common';
 import PlusIcon from '../../assets/icons/plus.svg';
 
-const GroupsSelect = ({ groups }) => {
+const GroupsSelect = ({ groups, setDisplayForm }) => {
+  const changeGroup = event => {
+    const { value } = event.target;
+    setDisplayForm(false);
+  };
+
   return (
     <Form
       style={{
@@ -15,7 +20,7 @@ const GroupsSelect = ({ groups }) => {
         alignItems: 'center',
       }}
     >
-      <Select>
+      <Select onChange={e => changeGroup(e)}>
         <Option disabled selected value>
           select a group
         </Option>
@@ -23,7 +28,7 @@ const GroupsSelect = ({ groups }) => {
           return <Option value={group}>{group}</Option>;
         })}
       </Select>
-      <IconButton onClick={() => removeLink(site)} color="green" colorHover="darkGreen">
+      <IconButton onClick={() => setDisplayForm(true)} color="green" colorHover="darkGreen">
         <PlusIcon width="16px" height="16px" />
       </IconButton>
     </Form>
@@ -32,6 +37,7 @@ const GroupsSelect = ({ groups }) => {
 
 GroupsSelect.propTypes = {
   groups: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setDisplayForm: PropTypes.func.isRequired,
 };
 
 const Select = styled.select`
