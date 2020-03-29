@@ -10,7 +10,17 @@ const Modal = () => {
 
   const quote = quotes[(Math.random() * quotes.length) | 0];
 
-  if (!sitesList.includes(window.location.origin)) return null;
+  const showCurrentLink = () => {
+    let show = true;
+    const currentUrl = window.location.origin;
+    sitesList.forEach(site => {
+      if (currentUrl.includes(site)) show = false;
+    });
+
+    return show;
+  };
+
+  if (showCurrentLink()) return null;
 
   return (
     <ThemeProvider theme={theme}>
