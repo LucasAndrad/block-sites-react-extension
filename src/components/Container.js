@@ -13,6 +13,7 @@ const Container = () => {
   const [inputValue, setInputValue] = useState('');
   const [displayForm, setDisplayForm] = useState(false);
   const groups = useWebsitesList();
+  const [groupSelect, setGroupSelect] = useState('');
 
   const groupsNames = () => {
     const names = Object.keys(groups) || [''];
@@ -36,7 +37,12 @@ const Container = () => {
 
   return (
     <>
-      <GroupsSelect groups={groupsNames()} setDisplayForm={setDisplayForm} />
+      <GroupsSelect
+        groups={groupsNames()}
+        setDisplayForm={setDisplayForm}
+        groupSelect={groupSelect}
+        setGroupSelect={setGroupSelect}
+      />
       {displayForm ? <GroupForm setDisplayForm={setDisplayForm} /> : null}
 
       {!displayForm ? (

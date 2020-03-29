@@ -5,9 +5,10 @@ import { space } from 'styled-system';
 import { Form, IconButton } from '../Common';
 import PlusIcon from '../../assets/icons/plus.svg';
 
-const GroupsSelect = ({ groups, setDisplayForm }) => {
+const GroupsSelect = ({ groups, setDisplayForm, groupSelect, setGroupSelect }) => {
   const changeGroup = event => {
     const { value } = event.target;
+    setGroupSelect(value);
     setDisplayForm(false);
   };
 
@@ -25,7 +26,11 @@ const GroupsSelect = ({ groups, setDisplayForm }) => {
           select a group
         </Option>
         {groups.map(group => {
-          return <Option value={group}>{group}</Option>;
+          return (
+            <Option selected={groupSelect} value={group}>
+              {group}
+            </Option>
+          );
         })}
       </Select>
       <IconButton onClick={() => setDisplayForm(true)} color="green" colorHover="darkGreen">
@@ -38,6 +43,8 @@ const GroupsSelect = ({ groups, setDisplayForm }) => {
 GroupsSelect.propTypes = {
   groups: PropTypes.arrayOf(PropTypes.string).isRequired,
   setDisplayForm: PropTypes.func.isRequired,
+  groupSelect: PropTypes.string.isRequired,
+  setGroupSelect: PropTypes.func.isRequired,
 };
 
 const Select = styled.select`
