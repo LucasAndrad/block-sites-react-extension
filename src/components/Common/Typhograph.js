@@ -32,6 +32,10 @@ export const H1 = styled.h1`
 `;
 
 export const Quote = styled.p`
+  all: initial;
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
   font-size: 1.1rem;
   font-family: serif;
   white-space: pre-line;

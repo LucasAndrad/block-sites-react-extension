@@ -1,5 +1,6 @@
 import React from 'react';
 import theme from 'themes/default';
+import { layout, space } from 'styled-system';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { H1, H3, Quote } from './Common';
 import { quotes } from '../assets/quotes.json';
@@ -36,11 +37,11 @@ const Modal = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Container>
-        <ModalContent>
+        <ModalContent width={[650]} height={[380]}>
           <H1 style={{ marginTop: '0px', textAlign: 'left' }}>
             {`Hey, you should't be here\nTry to keep focus\nYou can do it`}
           </H1>
-          <H3 style={{ marginTop: '5%' }}>Maybe these words can help</H3>
+          <H3 style={{ marginTop: '8%' }}>Maybe these words can help</H3>
           <QuoteContainer>
             <Quote>{`"${quote.text}"`}</Quote>
             <Quote>{quote.author}</Quote>
@@ -68,15 +69,17 @@ const Container = styled.div`
 `;
 
 const QuoteContainer = styled.div`
-  margin-top: 10%;
+  margin-top: 12%;
 `;
 
 const ModalContent = styled.div`
+  ${layout}
+  ${space}
   position: absolute;
   z-index: 10500;
   background: #ffffff;
-  width: 550px;
-  height: 350px;
+  /* width: 550px;
+  height: 350px; */
   padding: 20px;
   border-radius: 1px;
   left: 50%;

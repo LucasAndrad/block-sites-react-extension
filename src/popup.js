@@ -10,7 +10,7 @@ import { H3 } from './components/Common';
 const Popup = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Box width="350px" height="550px" padding={16}>
+      <Box width={['350px', '350px', '560px']} height="60%" padding={16}>
         <H3>Good Block</H3>
         <Container />
       </Box>
