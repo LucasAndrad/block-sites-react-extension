@@ -7,7 +7,7 @@ import defaultTheme from 'themes/default';
 const OptionsPage = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Example />
+      <p>Nothing here yet. This will be add in future version</p>
     </ThemeProvider>
   );
 };

@@ -5,3 +5,4 @@ build
 build.pem
 ext.nex
 ext.pem
+*.zip

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import browser from 'webextension-polyfill';
 import { Button, Form, Input } from './Common';
 import { GroupsSelect, GroupForm, RemoveGroup } from './Groups';
@@ -52,7 +51,7 @@ const Container = () => {
             <Input
               value={inputValue}
               onChange={e => handleInputChange(e)}
-              placeholder="link, example: http://linkname.com"
+              placeholder="link, example: linkname.com"
             />
             <Button onClick={() => saveLink()} mt={16}>
               Add Link
