@@ -3,15 +3,15 @@
     "message": "Hello, World!"
   },
   "appName": {
-    "message": "React Web Extension Boilerplate",
-    "description": "The title of the application, displayed in the web store."
+    "message": "Good Block",
+    "description": "This extension blocks websites for you."
   },
   "appShortName": {
-    "message": "RWEB",
-    "description": "The short_name (maximum of 12 characters recommended) is a short version of the extension's name. "
+    "message": "Good Block",
+    "description": "This extension blocks websites for you."
   },
   "appDesc": {
-    "message": "This app does something awesome.",
-    "description": "The description of the application, displayed in the web store."
+    "message": "This extension blocks websites for you.",
+    "description": "This extension blocks websites for you."
   }
 }
