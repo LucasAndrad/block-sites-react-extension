@@ -21,6 +21,7 @@ module.exports = {
     alias: {
       react: 'preact/compat',
       'react-dom': 'preact/compat',
+      'src': 'src'
     },
   },
   module: {

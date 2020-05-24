@@ -20,7 +20,6 @@
       "/build",
       "/coverage"
     ],
-    "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "src/*.{js,jsx}",
