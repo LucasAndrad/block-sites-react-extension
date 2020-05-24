@@ -1,22 +1,26 @@
 {
   "version": "1.0.3",
-  "name": "react-browser-extension-boilerplate",
+  "name": "good-block-react-browser-extension",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ElForastero/react-browser-extension-boilerplate"
+    "url": "https://github.com/LucasAndrad/block-sites-react-extension"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production yarn webpack -c webpack.config.js --mode production",
     "watch": "cross-env NODE_ENV=development yarn webpack -c webpack.config.js --mode development -w",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "build:firefox": "rm ../good-block.zip && ditto -c -k --sequesterRsrc --keepParent build ../good-block.zip",
     "build:sourcecode": "rm ../source-code.zip && zip -r -FS ../source-code.zip src README.md package.json LICENSE"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/preset-react": "^7.6.3",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
     "@svgr/webpack": "^4.3.3",
+    "babel-jest": "^26.0.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.6",
     "clean-webpack-plugin": "^3.0.0",
@@ -31,8 +35,10 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "html-webpack-plugin": "^4.0.0-beta.8",
+    "jest": "^26.0.1",
     "prettier": "^2.0.1",
     "raw-loader": "^3.1.0",
+    "react-test-renderer": "^16.13.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-extension-reloader": "^1.1.1",
