@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.3",
   "name": "react-browser-extension-boilerplate",
   "repository": {
     "type": "git",
@@ -7,7 +7,9 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production yarn webpack -c webpack.config.js --mode production",
-    "watch": "cross-env NODE_ENV=development yarn webpack -c webpack.config.js --mode development -w"
+    "watch": "cross-env NODE_ENV=development yarn webpack -c webpack.config.js --mode development -w",
+    "build:firefox": "rm ../good-block.zip && ditto -c -k --sequesterRsrc --keepParent build ../good-block.zip",
+    "build:sourcecode": "rm ../source-code.zip && zip -r -FS ../source-code.zip src README.md package.json LICENSE"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
