@@ -6,7 +6,13 @@ const Toggle = ({ active, toggleActive }) => {
   return (
     <ToggleContainer>
       <CheckBoxWrapper>
-        <CheckBox id="checkbox" type="checkbox" checked={active} onChange={() => toggleActive()} />
+        <CheckBox
+          id="checkbox"
+          data-testid="toggle-btn"
+          type="checkbox"
+          checked={active}
+          onChange={() => toggleActive()}
+        />
         <CheckBoxLabel htmlFor="checkbox" />
       </CheckBoxWrapper>
     </ToggleContainer>
