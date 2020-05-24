@@ -1,8 +1,13 @@
+<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
+<p align="center">
+  <a href="https://addons.mozilla.org/pt-BR/firefox/addon/good-block/?src=search">
+    <img alt="Good Block" src="https://raw.githubusercontent.com/LucasAndrad/block-sites-react-extension/master/logo.png" width="300" />
+  </a>
+</p>
+
 <h1 align="center">Good Block browser extension</h1>
 
 > This project is a browser externsion to block websites and help you to keep focus on work/study.
-
-![React Web Extension Boilerplate](logo.png)
 
 ## 🎉 Features
 
