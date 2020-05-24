@@ -15,6 +15,11 @@
 - Simple modal with a motivation message will appear for each block link
 - Turn on/off each group as you need
 
+## 🌐 Use it!
+This extension is currently available for Firefox, you can [install clicking here](https://addons.mozilla.org/pt-BR/firefox/addon/good-block/?src=search)
+
+Chrome: coming soon
+
 ## 🚀 Next versions
 - Schedule clock time for each group
 - A full options-page to manager block lists easier
