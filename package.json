@@ -17,11 +17,16 @@
   "jest": {
     "coverageProvider": "v8",
     "testEnvironment": "jest-environment-jsdom-sixteen",
+    "setupFiles": ["jest-webextension-mock"],
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/build",
       "/coverage"
     ],
+    "moduleNameMapper": {
+      "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/mocks/fileMock.js"
+    },
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "src/*.{js,jsx}",
@@ -61,6 +66,7 @@
     "html-webpack-plugin": "^4.0.0-beta.8",
     "jest": "^26.0.1",
     "jest-environment-jsdom-sixteen": "^1.0.3",
+    "jest-webextension-mock": "^3.6.0",
     "prettier": "^2.0.1",
     "raw-loader": "^3.1.0",
     "webpack": "^4.41.2",
