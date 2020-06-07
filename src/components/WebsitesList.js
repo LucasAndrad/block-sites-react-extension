@@ -26,7 +26,7 @@ const WebsitesList = ({ groups, groupSelect }) => {
   return (
     <ListContainer>
       {sitesList().map(site => (
-        <LinkContainer>
+        <LinkContainer key={site}>
           <LinkText>{site}</LinkText>
           <IconButton onClick={() => removeLink(site)} colorHover="lightRed">
             <TrashIcon width="16px" height="16px" />
